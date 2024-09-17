@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Management Dashboard</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid black; }
+        .actions button { margin: 5px; padding: 5px; }
+    </style>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9;">
+    
+        <!-- Header -->
+        <div style="background-color: #1f4e8b; color: white; padding: 20px; text-align: center;">
+            <h1 style="margin: 0; font-size: 24px;">HARDIK TRADERS - CLIENT MANAGEMENT DASHBOARD</h1>
+        </div>
+    
+        <!-- Search Bar -->
+        <div style="padding: 20px; text-align: center;">
+            <input type="text" placeholder="Search by Client Name or ID..." 
+                   style="padding: 10px; width: 60%; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;">
+            <button style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Search</button>
+        </div>
+    
+        <!-- New Job Sheet Button -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;"><a href="{% url 'add_client'  %}">New Job Sheet</a></button>
+        </div>
+    
+        <!-- Client Table -->
+        <div style="width: 90%; margin: 0 auto;">
+            <table style="width: 100%; border-collapse: collapse; background-color: white;">
+                <thead style="background-color: #1f4e8b; color: white;">
+                    <tr>
+                        <th style="padding: 12px; border: 1px solid #ddd;">#</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Client Id</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Client Name</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Contact Info</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Received Date</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Inventory Received</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Reported Issues</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Client Notes</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Assigned Technician</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Estimated Amount</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Deadline</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Status</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Actions</th>
+                    </tr>
+                </thead>
+        <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ client.client_id }}</td>
+                    <td>{{ client.client_name }}</td>
+                    <td>{{ client.contact_info }}</td>
+                    <td>{{ client.received_date }}</td>
+                    <td>{{ client.inventory_received }}</td>
+                    <td>{{ client.reported_issues }}</td>
+                    <td>{{ client.client_notes }}</td>
+                    <td>{{ client.assigned_technician }}</td>
+                    <td>{{ client.estimated_amount }}</td>
+                    <td>{{ client.deadline }}</td>
+                    <td>{{ client.status }}</td>
+                    <td>
+                        <a href="{% url 'view_client' client.id %}">View</a>
+                        <a href="{% url 'edit_client' client.id %}">Edit</a>
+                        <a href="{% url 'delete_client' client.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Footer -->
+    <div style="text-align: center; padding: 20px; margin-top: 20px; background-color: #f4f4f9; color: #333;">
+        © 2024 Hardik Traders
+    </div>
+
+</body>
+</html>

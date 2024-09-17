@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    background-color: #2980b9;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 100px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.btn-secondary {
+  background-color: #ccc;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #ddd;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: #ccc;
+  margin-top: 20px;
+}
+
+.progress-bar-fill {
+  height: 4px;
+  background-color: #4CAF50;
+  width: 0%;
+  transition: width 0.5s ease;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>View Job Sheet</h1>
+
+  <div class="form-group">
+    <label for="clientName">Client Name:</label>
+    <input type="text" id="clientName" name="client_name" value="{{ client.client_name }}"><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="contactInfo">Contact Info:</label>
+    <input type="text" id="contactInfo" name="contact_info" value="{{ client.contact_info }}"><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="receivedDate">Received Date:</label>
+    <input type="date" id="receivedDate" name="received_date" value="{{ client.received_date|date:'Y-m-d' }}"><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="inventoryReceived">Inventory Received:</label>
+    <input type="text" id="inventoryReceived" name="inventory_received" value="{{ client.inventory_received }}"><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="inventoryImage">Inventory Image/Document/Video:</label>
+    <a href="#" id="inventoryImage">View File</a>
+  </div>
+
+  <div class="form-group">
+    <input type="text" id="reportedIssues" name="reported_issues" value="{{ client.reported_issues }}"><br><br>
+    <input type="text" id="reportedIssues" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="clientNotes">Client Notes:</label>
+    <input type="text" id="clientNotes" name="client_notes" value="{{ client.client_notes }}"><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="assignedTechnician">Assigned Technician:</label>
+    <input type="text" id="assignedTechnician" name="assigned_technician" value="{{ client.assigned_technician }}"><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="estimatedAmount">Estimated Amount:</label>
+    <input type="text" id="estimatedAmount" name="estimated_amount" value="{{ client.estimated_amount }}"><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="deadline">Deadline:</label>
+    <input type="date" id="deadline" name="deadline" value="{{ client.deadline|date:'Y-m-d' }}"><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="status">Status:</label>
+    <input type="text" id="status" name="status" value="{{ client.status }}"><br><br>
+  </div>
+
+  <div class="form-group">
+    <label for="addUpdateNote">Add or Update Note:</label>
+    <textarea id="addUpdateNote" readonly></textarea>
+  </div>
+
+  <button class="btn">Save Note</button>
+  <button class="btn btn-secondary">Edit</button>
+  <button class="btn btn-secondary">Delete</button>
+
+  <button class="btn btn-secondary">Back</button>
+  
+
+  <div class="progress-bar">
+    <div class="progress-bar-fill"></div>
+  </div>
+  <button class="btn">Print</button>
+  <button class="btn">Save as PDF</button>
+</div>
+
+<script>
+// This script is for frontend functionality. It handles button clicks and updates the progress bar.
+
+const saveNoteBtn = document.querySelector('.btn');
+const editBtn = document.querySelector('.btn-secondary:nth-child(1)');
+const deleteBtn = document.querySelector('.btn-secondary:nth-child(2)');
+const backBtn = document.querySelector('.btn-secondary:nth-child(3)');
+const savePdfBtn = document.querySelector('.btn:nth-child(2)');
+const progressBarFill = document.querySelector('.progress-bar-fill');
+
+// Event listeners for buttons
+saveNoteBtn.addEventListener('click', () => {
+  // Implement logic to save note (e.g., send AJAX request)
+  console.log('Save Note button clicked');
+  // Update progress bar
+  progressBarFill.style.width = '50%';
+});
+
+editBtn.addEventListener('click', () => {
+  // Implement logic to enable editing (e.g., make fields editable)
+  console.log('Edit button clicked');
+});
+
+deleteBtn.addEventListener('click', () => {
+  // Implement logic to delete job sheet (e.g., confirm deletion)
+  console.log('Delete button clicked');
+});
+
+backBtn.addEventListener('click', () => {
+  // Implement logic to go back (e.g., navigate to previous page)
+  console.log('Back button clicked');
+});
+
+savePdfBtn.addEventListener('click', () => {
+  // Implement logic to save as PDF (e.g., use a PDF library)
+  console.log('Save as PDF button clicked');
+});
+</script>
+
+</body>
+</html>

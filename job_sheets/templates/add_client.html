@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Job Sheet</title>
+    <style>
+        input { display: block; margin: 10px 0; }
+    </style>
+</head>
+<body>
+
+<h1>Add New Job Sheet</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <label>Client ID: <input type="text" name="client_id"></label> 
+    <label>Client Name: <input type="text" name="client_name"></label>
+    <label>Contact Info: <input type="number" name="contact_info"></label>
+    <label>Received_date: <input type="date" name="received_date"></label>
+    <label>Inventory_received: <input type="text" name="inventory_received"></label>
+    <label>Reported_issues: <input type="text" name="reported_issues"></label>
+    <label>Client_notes: <input type="text" name="client_notes"></label>
+    <label>Assigned_technician: <input type="text" name="assigned_technician"></label>
+    <label>Estimated_amount: <input type="number" name="estimated_amount"></label>
+    <label>Deadline: <input type="date" name="deadline"></label>
+    <label>Status: <input type="text" name="status"></label>
+    
+    
+    <input type="submit" value="Add Job Sheet">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Job Sheet</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .container {
+            width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+            background-color: #2980b9;
+            padding: 10px 0;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="file"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>CREATE NEW JOB SHEET</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="client_name">Client Name:</label>
+    <input type="text" name="client_name" value="{{ client.client_name }}"><br>
+
+    <label for="contact_info">Contact Info:</label>
+    <input type="text" name="contact_info" value="{{ client.contact_info }}"><br>
+
+    <label for="contact_info">Received_date:</label>
+    <input type="date" name="received_date" value="{{ received_date }}"><br>
+
+    <label for="contact_info">Inventory_received:</label>
+    <input type="text" name="inventory_received" value="{{ client.inventory_received }}"><br>
+
+    <label for="inventoryImage">Upload Inventory Image/Document/Video:</label>
+    <input type="file" id="inventoryImage" name="inventoryImage">
+
+    <label for="contact_info">Reported_issues:</label>
+    <input type="text" name="reported_issues" value="{{ client.reported_issues }}"><br>
+
+    <label for="contact_info">Client_notes:</label>
+    <input type="text" name="client_notes" value="{{ client.client_notes }}"><br>
+
+    <label for="contact_info">Assigned_technician:</label>
+    <input type="text" name="assigned_technician" value="{{ client.assigned_technician }}"><br>
+
+    <label for="contact_info">Estimated_amount:</label>
+    <input type="number" name="estimated_amount" value="{{ client.estimated_amount }}"><br>
+
+    <label for="contact_info">Deadline:</label>
+    <input type="date" name="deadline" value="{{ deadline }}"><br>
+
+    <label for="contact_info">Status:</label>
+    <input type="text" name="status" value="{{ client.status}}"><br>
+
+    
+    <input type="submit" value="Update Client">
+</form>
+</div>
+</body>
+</html>
